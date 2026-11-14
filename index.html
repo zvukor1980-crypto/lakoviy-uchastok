@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru" data-version="1.0.0-stage1+aa43883936">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Лаковый участок">
+<meta name="theme-color" content="#1c1b24">
+<meta name="format-detection" content="telephone=no">
+<title>Лаковый участок</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="station" aria-label="Полицейский участок"></canvas>
+
+  <header id="hud">
+    <button id="avatar" aria-label="Профиль"><canvas id="portrait"></canvas><span id="hud-level" class="lvl-badge">1</span></button>
+    <div class="res-grid">
+      <button class="res" id="res-money"><span class="ic"></span><b>0</b></button>
+      <button class="res" id="res-electricity"><span class="ic"></span><b>0</b></button>
+      <button class="res" id="res-fuel"><span class="ic"></span><b>0</b></button>
+      <button class="res" id="res-materials"><span class="ic"></span><b>0</b></button>
+      <button class="res" id="res-ammo"><span class="ic"></span><b>0</b></button>
+      <button class="res" id="res-crystals"><span class="ic"></span><b>0</b></button>
+    </div>
+  </header>
+
+  <div id="side">
+    <button class="side-btn" id="btn-tasks"><span class="sic" data-icon="tasks"></span><span>Задания</span><em class="badge" hidden>0</em></button>
+    <button class="side-btn" id="btn-cases"><span class="sic" data-icon="cases"></span><span>Дела</span></button>
+    <button class="side-btn" id="btn-settings"><span class="sic" data-icon="gear"></span><span>Меню</span></button>
+    <button class="side-btn" id="hud-builders" aria-label="Строительницы"></button>
+  </div>
+
+  <section id="sheet" aria-live="polite"><div class="grip"></div><div id="sheet-body"></div></section>
+
+  <section id="screen-shop" class="screen" hidden>
+    <h1>Магазин</h1>
+    <div id="shop-body"></div>
+  </section>
+
+  <nav id="nav">
+    <button data-tab="station" class="on"><span class="nic" data-icon="station"></span>Участок</button>
+    <button data-tab="heroines" class="locked"><span class="nic" data-icon="heroines"></span>Героини<em>Скоро</em></button>
+    <button data-tab="map" class="locked"><span class="nic" data-icon="map"></span>Карта<em>Скоро</em></button>
+    <button data-tab="battle" class="locked"><span class="nic" data-icon="battle"></span>Бой<em>Скоро</em></button>
+    <button data-tab="shop"><span class="nic" data-icon="shop"></span>Магазин</button>
+  </nav>
+
+  <div id="menu" hidden>
+    <div class="menu-bg"></div>
+    <div class="menu-inner">
+      <div class="logo"><img src="icons/icon-192.png" alt=""><h1>Лаковый<br>участок</h1><p>Офлайн-стратегия о полицейском участке</p></div>
+      <div class="menu-btns">
+        <button class="btn primary big" id="btn-continue" hidden>Продолжить</button>
+        <button class="btn big" id="btn-new">Новая игра</button>
+        <button class="btn big" id="btn-menu-settings">Настройки</button>
+      </div>
+      <p class="small muted center">Этап 1 · без интернета, рекламы и покупок</p>
+    </div>
+  </div>
+
+  <div id="modal" hidden><div id="modal-card"></div></div>
+  <div id="toasts"></div>
+  <div id="loading"><div class="spinner"></div><p>Загрузка участка…</p></div>
+  <div id="rotate"><p>Поверните телефон вертикально</p></div>
+</div>
+<script type="module">
+  import { ICONS } from './js/icons.js';
+  document.querySelectorAll('[data-icon]').forEach((el) => { el.innerHTML = ICONS[el.dataset.icon]; });
+  document.querySelectorAll('.res').forEach((el) => { el.querySelector('.ic').innerHTML = ICONS[el.id.slice(4)]; });
+</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
